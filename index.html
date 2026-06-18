@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Glass CRM Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <aside class="sidebar glass-panel">
+      <div class="brand">
+        <div class="brand-mark">C</div>
+        <div>
+          <p>Nexus </p>
+          <span>CRM Workspace</span>
+        </div>
+      </div>
+
+      <nav class="nav-list" aria-label="Dashboard navigation">
+        <a class="nav-link active" href="#dashboard">
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-link" href="#leads">
+          <span>Leads</span>
+        </a>
+        <a class="nav-link" href="#leads">
+          <span>Lead Management</span>
+        </a>
+      </nav>
+
+      <div class="sidebar-note">
+        <p>Monthly Target</p>
+        <strong id="targetProgress">0%</strong>
+        <div class="progress-track">
+          <span id="targetBar"></span>
+        </div>
+      </div>
+    </aside>
+
+    <section class="content">
+      <header class="topbar glass-panel">
+        <div>
+          <h1>CRM Dashboard</h1>
+          <p class="topbar-subtitle">Manage leads, contacts and conversions</p>
+        </div>
+        <button class="primary-button" id="openAddModal" type="button">
+          <span>+</span>
+          Add Lead
+        </button>
+      </header>
+
+      <section class="stats-grid" aria-label="Dashboard stats">
+        <article class="stat-card glass-panel">
+          <span>Total Leads</span>
+          <strong id="totalLeads">0</strong>
+          <p>All active records</p>
+        </article>
+        <article class="stat-card glass-panel">
+          <span>Qualified Leads</span>
+          <strong id="qualifiedLeads">0</strong>
+          <p>Ready for proposal</p>
+        </article>
+        <article class="stat-card glass-panel">
+          <span>Contacted Leads</span>
+          <strong id="contactedLeads">0</strong>
+          <p>Active conversations</p>
+        </article>
+        <article class="stat-card glass-panel">
+          <span>Converted Leads</span>
+          <strong id="convertedLeads">0</strong>
+          <p>Closed won records</p>
+        </article>
+      </section>
+
+      <section class="toolbar glass-panel" id="leads">
+        <label class="search-box" for="searchInput">
+          <span>Search</span>
+          <input id="searchInput" type="search" placeholder="Name, company, email...">
+        </label>
+
+        <label class="filter-box" for="statusFilter">
+          <span>Status</span>
+          <select id="statusFilter">
+            <option value="All">All</option>
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Won">Won</option>
+            <option value="Lost">Lost</option>
+          </select>
+        </label>
+      </section>
+
+      <section class="leads-panel glass-panel">
+        <div class="table-header">
+          <div>Lead</div>
+          <div>Status</div>
+          <div>Value</div>
+          <div>Owner</div>
+          <div>Actions</div>
+        </div>
+        <div class="lead-list" id="leadList" aria-live="polite"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <h2>No leads found</h2>
+          <p>Adjust the search or add a new lead to the dashboard.</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <div class="modal-backdrop" id="leadModal" hidden>
+    <form class="lead-form glass-panel" id="leadForm">
+      <div class="modal-head">
+        <div>
+          <p class="eyebrow" id="formMode">New record</p>
+          <h2 id="modalTitle">Add Lead</h2>
+        </div>
+        <button class="icon-button" id="closeModal" type="button" aria-label="Close form">x</button>
+      </div>
+
+      <input id="leadId" type="hidden">
+
+      <div class="form-grid">
+        <label>
+          Name
+          <input id="leadName" type="text" required placeholder="Avery Stone">
+        </label>
+        <label>
+          Company
+          <input id="leadCompany" type="text" required placeholder="Northstar Labs">
+        </label>
+        <label>
+          Email
+          <input id="leadEmail" type="email" required placeholder="avery@northstar.io">
+        </label>
+        <label>
+          Phone
+          <input id="leadPhone" type="tel" required placeholder="+1 415 555 0147">
+        </label>
+        <label>
+          Status
+          <select id="leadStatus" required>
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Won">Won</option>
+            <option value="Lost">Lost</option>
+          </select>
+        </label>
+        <label>
+          Deal Value
+          <input id="leadValue" type="number" min="0" step="100" required placeholder="18000">
+        </label>
+        <label>
+          Owner
+          <input id="leadOwner" type="text" required placeholder="Maya Patel">
+        </label>
+        <label>
+          Source
+          <input id="leadSource" type="text" required placeholder="Web demo">
+        </label>
+      </div>
+
+      <div class="form-actions">
+        <button class="ghost-button" id="cancelForm" type="button">Cancel</button>
+        <button class="primary-button" type="submit">Save Lead</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
