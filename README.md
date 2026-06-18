@@ -26,6 +26,6 @@ task3/
 ├── script.js
 └── README.md
 
-## Author
 
-Keerthi
+## Live Demo
+https://6a33d8ad44108b23d8abc410--cheerful-beignet-f476f8.netlify.app/
